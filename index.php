@@ -51,7 +51,7 @@
 </head>
 <body>
 	<h1>Login</h1>
-	<form method="post" action="login.php">
+	<form method="post" action="index.php">
 		<label for="username">Username:</label>
 		<input type="text" id="username" name="username" required><br>
 		<label for="password">Password:</label>
@@ -61,9 +61,20 @@
 
 	<?php 
 		if(isset($_POST['username']) && isset($_POST['password'])){
-			header("Location: login.php");
-			
-			
-
+			$username = $_POST['username'];
+			$password = $_POST['password'];
+			if (($username == "bernard" || $username == "louis" || $username == "salim" || $username == "tanguy") && $password == "admin") {
+				// L'utilisateur est connecté
+				session_start();
+				$_SESSION['username'] = $username;
+				header("Location: https://www.youtube.com/watch?v=Ggq0c4e2hjA&pp=ygUVamVhbiBjbGF1ZGUgdmFuIGRhbW1l");
+				exit;
+			} else {
+				// Les informations de connexion sont incorrectes
+				header("Location: https://www.youtube.com/watch?v=CVcKI3t9RvQ");
+				exit;
+			}
+		}
+	?>
 </body>
 </html>
